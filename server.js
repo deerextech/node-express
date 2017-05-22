@@ -27,11 +27,6 @@ app.use((req, res, next)=>{
   next();
 });
 
-// app.use((req, res, next)=>{
-//   res.render('maintenance.hbs');
-//   next();
-// });
-
 app.use(express.static(__dirname + '/public'));
 
 hbs.registerHelper('getCurrentYear', ()=>{
@@ -51,11 +46,20 @@ app.get('/',(req, res)=>{
 
 app.get('/about', (req,res)=>{
   res.render('about.hbs',{
-    welcomeMessage: 'This is CAAAARL',
+    welcomeMessage: 'This is about Carl',
     pageTitle: 'About Carl!'
   });
 });
-
+app.get('/friends',(req,res)=>{
+  res.render('friends.hbs',{
+    welcomeMessage: 'Carl and Friends...',
+      images:{
+        image1:'http://www.deerexart.com/images/IMG_1492.jpg',
+        image2:'http://www.deerexart.com/images/IMG_3723.jpg',
+        image3:'http://www.deerexart.com/images/IMG_3536.jpg',
+      }
+  })
+})
 app.get('/bad',(req,res)=>{
   res.send({
     errorMessage:'unable to handle request'
